@@ -1,0 +1,64 @@
+<div class="container">
+    <h1>Gerenciamento de Livros</h1>
+    
+    <div class="book-form">
+      <h2>Adicionar/Editar Livro</h2>
+      <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="title">Título</label>
+          <input id="title" formControlName="title" type="text" placeholder="Digite o título do livro">
+        </div>
+        <div class="form-group">
+          <label for="author">Autor</label>
+          <input id="author" formControlName="author" type="text" placeholder="Digite o nome do autor">
+        </div>
+        <div class="form-group">
+            <label for="isbn">ISBN</label>
+            <input id="isbn" formControlName="isbn" type="text" placeholder="Digite o isbn">
+          </div>
+        <div class="form-group">
+          <label for="year">Ano</label>
+          <input id="year" formControlName="year" type="number" placeholder="Digite o ano de publicação">
+        </div>
+        <div class="form-group">
+            <label for="editor">Editor</label>
+            <input id="editor" formControlName="editor" type="text" placeholder="Digite o nome do editor">
+          </div>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <button type="button" class="btn btn-secondary" (click)="onClear()">Limpar</button>
+      </form>
+    </div>
+  
+    <div class="book-list">
+      <h2>Lista de Livros</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Título</th>
+            <th>Autor</th>
+            <th>ISBN</th>
+            <th>Ano</th>
+            <th>Editor</th>
+            <th>Alugado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let book of books">
+            <td>{{ book.title }}</td>
+            <td>{{ book.author.name }}</td>
+            <td>{{ book.isbn }}</td>
+            <td>{{ book.yearPublication }}</td>
+            <td>{{ book.publisher.name }}</td>
+            <td>{{ book.rent }}</td>
+            <td>
+              <button class="btn btn-edit" (click)="onEdit(book)">Editar</button>
+              <button class="btn btn-delete" (click)="onDelete(book.id)">Excluir</button>
+            </td>
+          </tr>
+        </tbody>
+      
+          
+      </table>
+    </div>
+  </div>
+  
